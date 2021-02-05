@@ -73,13 +73,25 @@ const getEvents = async (req, res, next) => {
 
 const createEvent = async (req, res, next) => {
     try {
-        //const id = req.params.id;
         const data = req.body;
-        const newevent =  await firestore.collection('events').doc(data.day);
-        await newevent.set(data);
-        res.send('New event record updated successfuly');        
+        let newevent = firestore.collection('events').doc(data.day);
+        let doc =  await newevent.get()
+        if (!doc.exists) {
+            console.log("123")
+            newevent.set(data);
+            res.status(200).send('New event record updated successfuly');   
+        } else {
+            res.status(422).send('It exists already');
+        }
+            
+        
+        //const id = req.params.id;
+        
+        //const newevent =  firestore.collection('events').doc(data.day);
+        //await newevent.create(data);
+             
     } catch (error) {
-        res.status(400).send(error.message);
+      res.status(400).send(error.message);
     }
 }
 
