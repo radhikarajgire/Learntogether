@@ -8,7 +8,7 @@ const firestore = firebase.firestore();
 
 
 
-const generateSlot = async (req, res, next) => {
+/*const generateSlot = async (req, res, next) => {
     try {
         const data = req.body;
         console.log(data.day)
@@ -17,7 +17,7 @@ const generateSlot = async (req, res, next) => {
     } catch (error) {
         res.status(400).send(error.message);
     }
-}
+}*/
 
 const getFreeSlots = async (req, res, next) => {
     try {
@@ -50,10 +50,21 @@ const getEvents = async (req, res, next) => {
         //const id = req.params.id;
         const happen = await firestore.collection('events');
         const data = await happen.get();
-        if(!data.exists) {
-            res.status(404).send('No events you are free');
+        const eventsArray = [];
+        if(data.empty) {
+            res.status(404).send('No events, you are free :)');
         }else {
-            res.send(data.data());
+            data.forEach(doc => {
+                const singleEvent = new eventsBooked(
+                doc.id,
+                doc.data().day,
+                doc.data().starttime,
+                doc.data().who,
+                doc.data().why
+            );
+            eventsArray.push(singleEvent);
+        }),
+            res.send(eventsArray);
         }
     } catch (error) {
         res.status(400).send(error.message);
@@ -62,17 +73,29 @@ const getEvents = async (req, res, next) => {
 
 const createEvent = async (req, res, next) => {
     try {
-        //const id = req.params.id;
         const data = req.body;
-        const newevent =  await firestore.collection('events').doc(data.day);
-        await newevent.update(data);
-        res.send('New event record updated successfuly');        
+        let newevent = firestore.collection('events').doc(data.day);
+        let doc =  await newevent.get()
+        if (!doc.exists) {
+            console.log("123")
+            newevent.set(data);
+            res.status(200).send('New event record updated successfuly');   
+        } else {
+            res.status(422).send('It exists already');
+        }
+            
+        
+        //const id = req.params.id;
+        
+        //const newevent =  firestore.collection('events').doc(data.day);
+        //await newevent.create(data);
+             
     } catch (error) {
-        res.status(400).send(error.message);
+      res.status(400).send(error.message);
     }
 }
 
-const deleteSlots = async (req, res, next) => {
+/*const deleteSlots = async (req, res, next) => {
     try {
         const id = req.params.id;
         await firestore.collection('days').doc(id).delete();
@@ -80,12 +103,12 @@ const deleteSlots = async (req, res, next) => {
     } catch (error) {
         res.status(400).send(error.message);
     }
-}
+}*/
 
 module.exports = {
-    generateSlot,
+    //generateSlot,
     getFreeSlots,
     getEvents,
     createEvent,
-    deleteSlots
+   //deleteSlots
 }
