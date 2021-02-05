@@ -1,3 +1,6 @@
+'use strict';
+
+
 const firebase = require('../db');
 const freeTimes = require('../models/timeSlot');
 const eventsBooked = require('../models/events'); 
