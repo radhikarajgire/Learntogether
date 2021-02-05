@@ -6,10 +6,10 @@ const {generateSlot,
         createEvent,
         deleteSlots
       } = require('../controllers/timeSlotController');
-
+const { body, validationResult } = require('express-validator');
 const router = express.Router();
 
-//router.post('/newSlot', generateSlot);
+router.post('/newSlot', body("day").isLength({min: 5}), generateSlot);
 router.get('/freeSlots', getFreeSlots);
 router.get('/events', getEvents);
 router.post('/createEvent', createEvent);

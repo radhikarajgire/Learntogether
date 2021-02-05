@@ -5,10 +5,15 @@ const firebase = require('../db');
 const freeTimes = require('../models/timeSlot');
 const eventsBooked = require('../models/events'); 
 const firestore = firebase.firestore();
+const { body, validationResult } = require('express-validator');
 
 
 
-/*const generateSlot = async (req, res, next) => {
+const generateSlot = async (req, res, next) => {
+    const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return res.status(400).json({ errors: errors.array() });
+        }
     try {
         const data = req.body;
         console.log(data.day)
@@ -17,7 +22,7 @@ const firestore = firebase.firestore();
     } catch (error) {
         res.status(400).send(error.message);
     }
-}*/
+}
 
 const getFreeSlots = async (req, res, next) => {
     try {
@@ -77,19 +82,13 @@ const createEvent = async (req, res, next) => {
         let newevent = firestore.collection('events').doc(data.day);
         let doc =  await newevent.get()
         if (!doc.exists) {
-            console.log("123")
-            newevent.set(data);
-            res.status(200).send('New event record updated successfuly');   
+            const isValidTimeSlot = Interval(doc.data().start, doc.data().stop).includes(req.time)
+            if (!isValidTimeSlot){res.send('Outside of bookable time for this day')}
+            else {newevent.set(data);
+                res.status(200).send('New event record updated successfuly'); }  
         } else {
             res.status(422).send('It exists already');
-        }
-            
-        
-        //const id = req.params.id;
-        
-        //const newevent =  firestore.collection('events').doc(data.day);
-        //await newevent.create(data);
-             
+        }         
     } catch (error) {
       res.status(400).send(error.message);
     }
@@ -106,7 +105,7 @@ const createEvent = async (req, res, next) => {
 }*/
 
 module.exports = {
-    //generateSlot,
+    generateSlot,
     getFreeSlots,
     getEvents,
     createEvent,
