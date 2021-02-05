@@ -1,4 +1,4 @@
-class event {
+class Event {
     constructor(id, day, starttime, who, why){
              this.id = id;
              this.day = day;
@@ -7,4 +7,4 @@ class event {
              this.why = why;
          }
 }
-module.exports = event;
+module.exports = Event;

@@ -45,6 +45,29 @@ const getFreeSlots = async (req, res, next) => {
     }
 }
 
+
+
+
+// const getFreeSlots = async (req, res, next) => {
+//     try {
+//         var now  = new Date();
+//         const today10Am = new Date(now.getFullYear(),now.getMonth(),now.getDate(),10);
+//         let d = new Date();
+//         // console.log("Now:" + d)
+//         let utc_offset = d.getTimezoneOffset();
+//         console.log("UTC offset :" +utc_offset)
+//         console.log("UTC: " + d)
+//         const today10Am = new Date(d.getFullYear(),d.getMonth(),d.getDate(),10);
+//         const timestamps = Array.from(Array(10).keys()).map( i => new Date(d.getFullYear(),d.getMonth(),d.getDate(),10,30*i) );
+       
+//          res.status(200).send("<h1>Free time slots:</h1>"+timestamps.join("<br>"));
+//     } catch (error) {
+//         console.error(error);
+//         res.status(400).send(error.message);
+//     }
+// }
+    
+
 const getEvents = async (req, res, next) => {
     try {
         //const id = req.params.id;
