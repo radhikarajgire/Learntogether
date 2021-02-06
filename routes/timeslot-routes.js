@@ -9,11 +9,11 @@ const {generateSlot,
 
 const router = express.Router();
 
-router.post('/newSlot', generateSlot);
+//router.post('/newSlot', generateSlot);
 router.get('/freeSlots', getFreeSlots);
 router.get('/events', getEvents);
 router.post('/createEvent', createEvent);
-router.delete('/deleteSlot/:id', deleteSlots);
+//router.delete('/deleteSlot/:id', deleteSlots);
 
 
 module.exports = {
