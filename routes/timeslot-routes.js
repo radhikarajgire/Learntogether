@@ -10,9 +10,9 @@ const { body, validationResult } = require('express-validator');
 const router = express.Router();
 
 router.post('/newSlot', body("day").isLength({min: 5}), generateSlot);
-router.get('/freeSlots', getFreeSlots);
-router.get('/events', getEvents);
-router.post('/createEvent', createEvent);
+router.get('/freeSlots/:date%:timezone', getFreeSlots);
+router.get('/events/:startdate%:enddate', getEvents);
+router.post('/createEvent/:dateTime%:duration', createEvent);
 //router.delete('/deleteSlot/:id', deleteSlots);
 
 
