@@ -1,4 +1,4 @@
-class timeSlot {
+class TimeSlot {
     constructor(id, starttime, stoptime, duration){
              this.id = id;
              this.starttime = starttime;
