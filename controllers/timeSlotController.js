@@ -6,12 +6,6 @@ const freeTimes = require('../models/timeSlot');
 const eventsBooked = require('../models/events'); 
 const firestore = firebase.firestore();
 const { body, validationResult } = require('express-validator');
-<<<<<<< HEAD
-var moment = require('moment-timezone');
-=======
->>>>>>> e7d23a07f28405d4d2b1c6f3a89b6f149447de35
-
-
 
 const generateSlot = async (req, res, next) => {
     const errors = validationResult(req);
@@ -20,14 +14,7 @@ const generateSlot = async (req, res, next) => {
         }
     try {
         const data = req.body;
-<<<<<<< HEAD
-        const datestamp = new Date(data.day).toISOString()
-        data.day = datestamp.slice(0, 10)
-        console.log(data.day)
-        await firestore.collection('days').doc(data.day).set(data);
-=======
         await firestore.collection('days').doc().set(data);
->>>>>>> e7d23a07f28405d4d2b1c6f3a89b6f149447de35
         res.send('Record saved successfuly');
     }catch (error) {
         res.status(400).send(error.message);
@@ -37,28 +24,12 @@ const generateSlot = async (req, res, next) => {
 const getFreeSlots = async (req, res, next) => {
     try {
         const id = req.params;
-<<<<<<< HEAD
-        const freeSlots = firestore.collection('days').doc(id.date);
-=======
         const UTCtimeearliest = new Date(id.date+" 00:00:00 GMT"+id.timezone).toISOString()
         const UTCtimelatest = new Date(id.date+" 23:59:59 GMT"+id.timezone).toISOString()
         const freeSlots = firestore.collection('days');
->>>>>>> e7d23a07f28405d4d2b1c6f3a89b6f149447de35
         const data = await freeSlots.get();
         const zone = id.timezone.replace("-","/")
         const freeSlotsArray = [];
-<<<<<<< HEAD
-        if(!data.exists) {
-            res.status(404).send('No slots exist for this date');
-        }else {
-            for(let i=Date.parse(id.date+'T'+data.data().start);i<Date.parse(id.date+'T'+data.data().stop);i+=data.data().duration*60000){
-                let stringTime=new Date(i)
-                let localTime = stringTime.toLocaleString('de-DE', {timeZone: zone})
-                freeSlotsArray.push(localTime);
-            };
-            res.send(freeSlotsArray);
-       }
-=======
         data.forEach((entry)=>{          
             if(UTCtimeearliest<entry.data().starttime&&entry.data().stoptime<UTCtimelatest){
                 for(let i=Date.parse(entry.data().starttime);i<Date.parse(entry.data().stoptime);i+=entry.data().duration*60000){
@@ -85,7 +56,6 @@ const getFreeSlots = async (req, res, next) => {
             else{
                 res.send(freeSlotsArray);
             }
->>>>>>> e7d23a07f28405d4d2b1c6f3a89b6f149447de35
     } catch (error) {
         res.status(400).send(error.message);
     }
