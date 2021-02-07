@@ -1,11 +1,9 @@
-class TimeSlot {
-    constructor(id, day, start, stop, duration, timezone){
+class timeSlot {
+    constructor(id, starttime, stoptime, duration){
              this.id = id;
-             this.day = day;
-             this.start = start;
-             this.stop = stop;
+             this.starttime = starttime;
+             this.stoptime = stoptime;
              this.duration = duration;
-             this.timezone = timezone;
          }
 }
 module.exports = TimeSlot;

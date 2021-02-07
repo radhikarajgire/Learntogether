@@ -1,10 +1,8 @@
-class Event {
-    constructor(id, day, starttime, who, why){
+class event {
+    constructor(id, appointment, duration){
              this.id = id;
-             this.day = day;
-             this.starttime = starttime;
-             this.who = who;
-             this.why = why;
+             this.appointment = appointment;
+             this.duration = duration;
          }
 }
 // const appointment = new Event({
