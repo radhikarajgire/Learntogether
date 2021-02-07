@@ -28,7 +28,6 @@ const getFreeSlots = async (req, res, next) => {
         const UTCtimelatest = new Date(id.date+" 23:59:59 GMT"+id.timezone).toISOString()
         const freeSlots = firestore.collection('days');
         const data = await freeSlots.get();
-        const zone = id.timezone.replace("-","/")
         const freeSlotsArray = [];
         data.forEach((entry)=>{          
             if(UTCtimeearliest<entry.data().starttime&&entry.data().stoptime<UTCtimelatest){
