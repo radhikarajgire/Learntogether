@@ -39,7 +39,7 @@ The timezone must be the relavitve time to the GMT e.g. -0500 is 5 hours behind 
 
 Example ....api/freeSlots/2021-02-13%-0500
 
-##Data format for Creat Event
+## Data format for Creat Event
 The path is
 .....api/createEvent/:dateTime%:duration
 
@@ -48,7 +48,7 @@ The duration is in minutes mm e.g. 30 for thirty minutes and 90 for ninety minut
 
 Example ....api/createEvent/2034-10-05&15:30:00&GMT-0800%30
 
-##Data format for Get Events
+## Data format for Get Events
 The path is
 .....api/events/:startdate%:enddate
 
