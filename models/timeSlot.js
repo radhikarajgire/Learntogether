@@ -6,4 +6,4 @@ class timeSlot {
              this.duration = duration;
          }
 }
-module.exports = timeSlot;
+module.exports = TimeSlot;

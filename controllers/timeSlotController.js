@@ -7,8 +7,6 @@ const eventsBooked = require('../models/events');
 const firestore = firebase.firestore();
 const { body, validationResult } = require('express-validator');
 
-
-
 const generateSlot = async (req, res, next) => {
     const errors = validationResult(req);
         if (!errors.isEmpty()) {
@@ -18,7 +16,7 @@ const generateSlot = async (req, res, next) => {
         const data = req.body;
         await firestore.collection('days').doc().set(data);
         res.send('Record saved successfuly');
-    } catch (error) {
+    }catch (error) {
         res.status(400).send(error.message);
     }
 }
