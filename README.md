@@ -39,7 +39,7 @@ The timezone must be the relavitve time to the GMT e.g. -0500 is 5 hours behind 
 
 Example ....api/freeSlots/2021-02-13%-0500
 
-## Data format for Creat Event
+## Data format for Create Event
 The path is
 .....api/createEvent/:dateTime%:duration
 
