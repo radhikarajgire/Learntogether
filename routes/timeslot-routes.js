@@ -12,7 +12,7 @@ const router = express.Router();
 router.post('/newSlot', generateSlot);
 router.get('/freeSlots/:date%:timezone', getFreeSlots);
 router.get('/events/:startdate%:enddate', getEvents);
-router.post('/createEvent/:dateTime%:duration', createEvent);
+router.post('/createEvent/:dateTime~:duration', createEvent);
 //router.delete('/deleteSlot/:id', deleteSlots);
 
 

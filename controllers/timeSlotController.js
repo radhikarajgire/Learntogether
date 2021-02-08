@@ -70,7 +70,9 @@ const getEvents = async (req, res, next) => {
         const eventsArray = [];
         data.forEach(entry => {
             if(UTCtimeearliest<entry.data().eventtime&&entry.data().eventtime<UTCtimelatest){
-               eventsArray.push({'eventime': entry.data().eventtime, 'duration': entry.data().duration});  
+            let timeform = entry.data().eventtime.split(".")   
+            let pushme = {'eventtime': timeform[0].replace("T"," "), 'duration': entry.data().duration}
+               eventsArray.push(pushme) 
             }});
         if(eventsArray.length===0){
             res.send(['Nothing matches your request'])
@@ -89,6 +91,7 @@ const createEvent = async (req, res, next) => {
         const id = req.params;
         const correctformdate=id.dateTime.replace(/&/gi, ' ')
         const UTCtime=new Date(correctformdate).toISOString() 
+        console.log(UTCtime)
         let newevent = firestore.collection('events');
         let doc =  await newevent.get()
         let prebook = false

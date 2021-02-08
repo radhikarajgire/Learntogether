@@ -62,9 +62,25 @@ function Scheduler() {
       .then(data=>console.log(data))
       .catch((error) => {
       console.error('Error:', error)})
+      
+      fetch("http://localhost:8000/api/events/"+testdate+"%"+testdate)
+      .then(response=>response.json())
+      .then(data=>console.log(data))
+      .catch((error) => {
+      console.error('Error:', error)})
       }
 
     }, [selectedDate, selectedArea])
+
+    function createNewEvent(){
+      fetch("http://localhost:8000/api/createEvent/2021-02-11&10:00:00&GMT-0500~30", {method: 'POST', mode:'cors', cache: 'no-cache', redirect: 'follow'})
+      .then(response=>response.json())
+      .then(data=>console.log(data))
+      .catch((error) => {
+      console.error('Error:', error)})
+      
+
+    }
 
     return (
       <div className = 'App'>
@@ -85,6 +101,7 @@ function Scheduler() {
         <Select
         options={data} 
         onChange={info=>setSelectedArea(info)}/>
+        <button onClick={()=>createNewEvent()} width={100} height={100}>SMALL</button>
       </div>
     );
   }
