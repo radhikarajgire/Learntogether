@@ -72,6 +72,14 @@ function Scheduler() {
 
     }, [selectedDate, selectedArea])
 
+    function eventsBetweenDates(startdate, enddate){
+      fetch("http://localhost:8000/api/events/"+startdate+"%"+enddate)
+      .then(response=>response.json())
+      .then(data=>console.log(data))
+      .catch((error) => {
+      console.error('Error:', error)})
+    }
+
     function createNewEvent(){
       fetch("http://localhost:8000/api/createEvent/2021-02-11&10:00:00&GMT-0500~30", {method: 'POST', mode:'cors', cache: 'no-cache', redirect: 'follow'})
       .then(response=>response.json())
