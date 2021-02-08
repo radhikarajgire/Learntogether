@@ -24,12 +24,27 @@ function Scheduler() {
         label:"(GMT+05:30) Chennai, Kolkata, Mumbai, New Delhi"
       },
       {
-        value:"Africa/Nairobi",
-        label:"Africa/Nairobi"
+        value:"Europe/London",
+        label:"(GMT+00:00) London"
       },
       {
         value:"Asia/Kuala_Lumpur",
         label:"(GMT+08:00) Kuala Lumpur, Singapore"
+      },
+      {
+        value: "(GMT+01:00) Central European Time - Belgrade",
+        label:"Europe/Belgrade"
+      },
+      {value: "(GMT+01:00) Central European Time - Prague",
+      label:"Europe/Prague"
+      },
+      {
+        value: "(GMT+12:00) Moscow+09 - Petropavlovsk-Kamchatskiy",
+        label: "Asia/Kamchatka"
+      },
+      {
+        value:"(GMT+10:30) Central Time - Adelaide",
+        label: "Australia/Adelaide"
       }
     ]
     return (

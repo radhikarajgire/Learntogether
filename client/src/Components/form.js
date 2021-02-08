@@ -4,8 +4,8 @@ import React from "react";
 function Form(){
 
 
-    return(
-        <form>
+return(
+      <form>
              <div class="row g-3">
       <div class="col">
       <input type="text" class="form-control" placeholder="First name" aria-label="First name"/>
@@ -13,7 +13,7 @@ function Form(){
       <div class="col">
       <input type="text" class="form-control" placeholder="Last name" aria-label="Last name"/>
     </div>
-      </div>
+  </div>
   <div class="mb-3">
     <label for="exampleInputEmail1" class="form-label">Email address</label>
     <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"/>

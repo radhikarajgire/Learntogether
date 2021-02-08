@@ -27,7 +27,7 @@ npm run dev would help in running both server and client concurrently.
 ```
 POST /api/createEvent/:dateTime%:duration
 ```
-Example test request "http://localhost:8000/api/createEvent/2034-10-05&15:30:00&GMT-0800%30"
+Example test request "http://localhost:8000/api/createEvent/2021-02-14&08:00:00&GMT-0500%30"
 
 Explaination about parameters used:
 The dateTime must be in the form yyyy-mm-dd&hh:mm:ss&GMT+hhmm, e.g 2121-06-30&12:35:00&GMT+0500
