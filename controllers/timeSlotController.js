@@ -50,7 +50,7 @@ const getFreeSlots = async (req, res, next) => {
             }}
             });
             if(freeSlotsArray.length===0){
-                res.send('Nothing matches your request')
+                res.send(['Nothing matches your request'])
             }
             else{
                 res.send(freeSlotsArray);
@@ -73,7 +73,7 @@ const getEvents = async (req, res, next) => {
                eventsArray.push({'eventime': entry.data().eventtime, 'duration': entry.data().duration});  
             }});
         if(eventsArray.length===0){
-            res.send('Nothing matches your request')
+            res.send(['Nothing matches your request'])
         }
         else{
             res.send(eventsArray);
@@ -98,11 +98,11 @@ const createEvent = async (req, res, next) => {
             }})
         
         if(prebook){
-            res.status(422).send('This slot is already booked')
+            res.status(422).send(['This slot is already booked'])
         }else {
             let tosave = {'eventtime':UTCtime, 'duration': id.duration}
             newevent.add(tosave)
-            res.status(200).send('New event record updated successfuly')
+            res.status(200).send(['New event record updated successfuly'])
         }      
     } catch (error) {
       res.status(400).send(error.message);
