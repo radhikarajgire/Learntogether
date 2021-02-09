@@ -7,6 +7,7 @@ function Scheduler() {
     // const [startDate, setStartDate] = useState(new Date());
     const [selectedDate, setSelectedDate] = useState()
     const [selectedArea, setSelectedArea] = useState({"label": "(GMT+00:00)"})
+    const [timeSlotArray, setTimeSlotArray] = useState([])
 
     const data = [
       {
@@ -59,7 +60,7 @@ function Scheduler() {
       let testdate = testyear+"-"+testmonth+'-'+testday
       fetch("http://localhost:8000/api/freeSlots/"+testdate+"%"+testzone)
       .then(response=>response.json())
-      .then(data=>console.log(data))
+      .then(data=>setTimeSlotArray(data))
       .catch((error) => {
       console.error('Error:', error)})
       
@@ -106,6 +107,12 @@ function Scheduler() {
         //filterTime={filterPassedTime}
   
         />
+      <div className='dates container'>
+        { timeSlotArray.map((entry)=>{
+          <p></p>
+
+        })}
+      </div>
         <Select
         options={data} 
         onChange={info=>setSelectedArea(info)}/>
